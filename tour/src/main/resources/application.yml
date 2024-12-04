@@ -1,0 +1,8 @@
+server:
+  port: 2002
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: tour
