@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
+        "flywaydb",
+        "jdbc",
+        "projectlombok",
         "springframework"
     ],
     "java.configuration.updateBuildConfiguration": "interactive"
