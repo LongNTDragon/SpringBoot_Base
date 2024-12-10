@@ -30,4 +30,8 @@ public class BaseModel {
     @LastModifiedDate
     @Column(nullable = false)
     private Date updatedAt;
+
+    public void updateByDto(BaseDto baseDto) {
+        // implement code
+    }
 }

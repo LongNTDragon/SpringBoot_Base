@@ -1,10 +1,11 @@
-package com.v1.tour.utils;
+package com.v1.tour.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Builder.Default;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,7 +13,8 @@ import lombok.Setter;
 @Setter
 @Builder
 public class ResponseObject {
-    private Boolean success;
+    @Default
+    private Boolean status = true;
     private Object data;
     private String message;
 }

@@ -10,4 +10,11 @@ public class Constants {
 
         public static final String ROLE = "role";
     }
+
+    public static class ErrorType {
+        private ErrorType() {
+        }
+
+        public static final String ID_NOT_FOUND = "ID_NOT_FOUND";
+    }
 }
