@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS account (
+    id UUID PRIMARY KEY,
+    username VARCHAR(255),
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    phone VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP
+);

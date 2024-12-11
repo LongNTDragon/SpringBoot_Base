@@ -2,6 +2,7 @@
     "cSpell.words": [
         "flywaydb",
         "jdbc",
+        "modelmapper",
         "projectlombok",
         "springframework"
     ],
