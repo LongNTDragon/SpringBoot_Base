@@ -1,7 +1,8 @@
-package com.v1.tour.role.dto;
+package com.v1.tour.userrole.dto;
+
+import java.util.UUID;
 
 import com.v1.tour.base.BaseDto;
-import com.v1.tour.enums.EnumRoleName;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +15,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Builder
-public class RoleDto extends BaseDto {
-    private EnumRoleName name;
+public class UserRoleDto extends BaseDto {
+    private UUID userId;
+    private UUID roleId;
 }

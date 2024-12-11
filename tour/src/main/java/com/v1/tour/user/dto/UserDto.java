@@ -1,7 +1,6 @@
-package com.v1.tour.role.dto;
+package com.v1.tour.user.dto;
 
 import com.v1.tour.base.BaseDto;
-import com.v1.tour.enums.EnumRoleName;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +10,12 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 @Builder
-public class RoleDto extends BaseDto {
-    private EnumRoleName name;
+public class UserDto extends BaseDto {
+    private String username;
+    private String email;
+    private String phone;
+    private String password;
 }

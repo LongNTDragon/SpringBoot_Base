@@ -9,9 +9,9 @@ import com.v1.tour.exception.CustomException;
 import com.v1.tour.utils.Constants.ErrorType;
 
 public class BaseService<M extends BaseModel, R extends BaseRepository<M>> {
-    ModelMapper mapper;
-    R repository;
-    Repositories repositories;
+    protected ModelMapper mapper;
+    protected R repository;
+    protected Repositories repositories;
 
     public BaseService(R repository) {
         this.repository = repository;
