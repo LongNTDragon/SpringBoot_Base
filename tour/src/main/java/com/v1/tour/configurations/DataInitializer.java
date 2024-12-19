@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.v1.tour.enums.EnumRoleName;
@@ -24,6 +25,7 @@ public class DataInitializer implements ApplicationRunner {
     private final RoleService roleService;
     private final UserService userService;
     private final UserRoleService userRoleService;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -36,6 +38,7 @@ public class DataInitializer implements ApplicationRunner {
                     .username("admin")
                     .password("123456")
                     .build();
+            userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
             var user = userService.create(userDto, UserModel.class);
 
             var userRoleDto = UserRoleDto.builder()

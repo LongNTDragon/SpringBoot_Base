@@ -1,5 +1,8 @@
 package com.v1.tour.role;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 import com.v1.tour.base.BaseService;
@@ -24,5 +27,9 @@ public class RoleService extends BaseService<RoleModel, RoleRepository> {
 
         var roleDto = RoleDto.builder().name(name).build();
         return this.create(roleDto);
+    }
+
+    public List<RoleModel> findAllByUserId(UUID userId) {
+        return super.repository.findAllByUserId(userId);
     }
 }

@@ -1,10 +1,13 @@
 {
     "cSpell.words": [
+        "Configurer",
         "flywaydb",
         "jdbc",
+        "Jwts",
         "modelmapper",
         "projectlombok",
-        "springframework"
+        "springframework",
+        "userdetails"
     ],
     "java.configuration.updateBuildConfiguration": "interactive"
 }
