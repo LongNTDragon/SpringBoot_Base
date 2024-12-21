@@ -17,6 +17,7 @@ public class Constants {
         }
 
         public static final String UNAUTHORIZED = "UNAUTHORIZED";
+        public static final String ACCESS_DENIED = "ACCESS_DENIED";
         public static final String EXPIRED_JWT = "EXPIRED_JWT";
         public static final String INVALID_JWT = "INVALID_JWT";
         public static final String ID_NOT_FOUND = "ID_NOT_FOUND";

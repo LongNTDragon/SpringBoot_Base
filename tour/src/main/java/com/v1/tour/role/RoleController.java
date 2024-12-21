@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.v1.tour.auth.rolesallowed.RolesAllowed;
 import com.v1.tour.base.BaseController;
 import com.v1.tour.base.ResponseObject;
+import com.v1.tour.enums.EnumRoleName;
 import com.v1.tour.role.dto.RoleDto;
 import com.v1.tour.utils.Constants.UrlPath;
 
@@ -26,6 +28,7 @@ public class RoleController extends BaseController {
     private final RoleService service;
 
     @GetMapping("{id}")
+    @RolesAllowed({ EnumRoleName.ADMIN })
     public ResponseEntity<ResponseObject> findById(@PathVariable UUID id) {
         return this.onSuccess(service.findById(id));
     }

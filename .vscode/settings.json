@@ -6,6 +6,8 @@
         "Jwts",
         "modelmapper",
         "projectlombok",
+        "rolesallow",
+        "rolesallowed",
         "springframework",
         "userdetails"
     ],
