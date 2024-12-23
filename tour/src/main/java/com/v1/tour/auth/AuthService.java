@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.v1.tour.auth.dto.LoginDto;
 import com.v1.tour.auth.userdetails.UserDetailsImpl;
+import com.v1.tour.usertoken.UserTokenService;
+import com.v1.tour.usertoken.dto.UserTokenDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,15 +19,26 @@ import lombok.RequiredArgsConstructor;
 public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final UserTokenService userTokenService;
 
     public AuthResponse login(LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
 
-        var token = jwtService.generateJwtToken((UserDetailsImpl) authentication.getPrincipal());
+        var user = (UserDetailsImpl) authentication.getPrincipal();
+        var accessToken = jwtService.generateJwtToken(user);
+        var refreshToken = UUID.randomUUID();
+
+        var userTokenDto = UserTokenDto.builder()
+                .userId(user.getId())
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
+        userTokenService.create(userTokenDto);
+
         return AuthResponse.builder()
-                .accessToken(token)
-                .refreshToken(UUID.randomUUID())
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
                 .build();
     }
 }

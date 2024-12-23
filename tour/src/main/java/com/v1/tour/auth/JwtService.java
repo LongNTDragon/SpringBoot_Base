@@ -18,15 +18,15 @@ public class JwtService {
     @Value("${spring.jwt.secret}")
     private String jwtSecret;
 
-    @Value("${spring.jwt.expiration-time}")
-    private Long jwtExpiration;
+    @Value("${spring.jwt.expiration-time.access-token}")
+    private Long tokenExpiration;
 
     public String generateJwtToken(UserDetailsImpl userDetailsImpl) {
         return Jwts.builder()
                 .setSubject(userDetailsImpl.getEmail())
                 .claim("username", userDetailsImpl.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + this.jwtExpiration))
+                .setExpiration(new Date((new Date()).getTime() + this.tokenExpiration))
                 .signWith(this.getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
