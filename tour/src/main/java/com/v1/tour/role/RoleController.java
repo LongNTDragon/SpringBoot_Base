@@ -34,16 +34,19 @@ public class RoleController extends BaseController {
     }
 
     @PostMapping("")
+    @RolesAllowed({ EnumRoleName.ADMIN })
     public ResponseEntity<ResponseObject> create(@RequestBody RoleDto roleDto) {
         return this.onSuccess(service.create(roleDto));
     }
 
     @PatchMapping("{id}")
+    @RolesAllowed({ EnumRoleName.ADMIN })
     public ResponseEntity<ResponseObject> update(@PathVariable UUID id, @RequestBody RoleDto roleDto) {
         return this.onSuccess(service.updateById(id, roleDto));
     }
 
     @DeleteMapping("{id}")
+    @RolesAllowed({ EnumRoleName.ADMIN })
     public ResponseEntity<ResponseObject> delete(@PathVariable UUID id) {
         return this.onSuccess(service.deleteById(id));
     }
