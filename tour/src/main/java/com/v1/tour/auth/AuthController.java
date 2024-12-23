@@ -12,6 +12,7 @@ import com.v1.tour.base.BaseController;
 import com.v1.tour.base.ResponseObject;
 import com.v1.tour.utils.Constants.UrlPath;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -21,12 +22,12 @@ public class AuthController extends BaseController {
     private final AuthService service;
 
     @PostMapping("login")
-    public ResponseEntity<ResponseObject> login(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<ResponseObject> login(@Valid @RequestBody LoginDto loginDto) {
         return this.onSuccess(service.login(loginDto));
     }
 
     @PostMapping("refresh_token")
-    public ResponseEntity<ResponseObject> refreshToken(@RequestBody RefreshTokenDto refreshTokenDto) {
+    public ResponseEntity<ResponseObject> refreshToken(@Valid @RequestBody RefreshTokenDto refreshTokenDto) {
         return this.onSuccess(service.refreshToken(refreshTokenDto));
     }
 }
