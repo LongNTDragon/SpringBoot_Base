@@ -1,11 +1,11 @@
 package com.v1.tour.user;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.v1.tour.base.BaseService;
 import com.v1.tour.base.Repositories;
+import com.v1.tour.exception.CustomException;
+import com.v1.tour.utils.Constants.ErrorType;
 
 @Service
 public class UserService extends BaseService<UserModel, UserRepository> {
@@ -17,7 +17,8 @@ public class UserService extends BaseService<UserModel, UserRepository> {
         return super.repository.existsByEmail(email);
     }
 
-    public Optional<UserModel> findByEmail(String email) {
-        return super.repository.findByEmail(email);
+    public UserModel findByEmail(String email) {
+        return super.repository.findByEmail(email)
+                .orElseThrow(() -> new CustomException(ErrorType.EMAIL_NOT_FOUND));
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.v1.tour.auth.dto.LoginDto;
+import com.v1.tour.auth.dto.RefreshTokenDto;
 import com.v1.tour.base.BaseController;
 import com.v1.tour.base.ResponseObject;
 import com.v1.tour.utils.Constants.UrlPath;
@@ -22,5 +23,10 @@ public class AuthController extends BaseController {
     @PostMapping("login")
     public ResponseEntity<ResponseObject> login(@RequestBody LoginDto loginDto) {
         return this.onSuccess(service.login(loginDto));
+    }
+
+    @PostMapping("refresh_token")
+    public ResponseEntity<ResponseObject> refreshToken(@RequestBody RefreshTokenDto refreshTokenDto) {
+        return this.onSuccess(service.refreshToken(refreshTokenDto));
     }
 }

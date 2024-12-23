@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.v1.tour.role.RoleService;
 import com.v1.tour.user.UserService;
-import com.v1.tour.utils.Constants.ErrorType;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,8 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetailsImpl loadUserByUsername(String username) throws UsernameNotFoundException {
-        var user = userService.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException(ErrorType.EMAIL_NOT_FOUND));
+        var user = userService.findByEmail(username);
 
         var roles = roleService.findAllByUserId(user.getId());
 

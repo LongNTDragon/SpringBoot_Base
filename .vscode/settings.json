@@ -3,6 +3,8 @@
         "Configurer",
         "flywaydb",
         "jdbc",
+        "jjwt",
+        "jsonwebtoken",
         "Jwts",
         "modelmapper",
         "projectlombok",

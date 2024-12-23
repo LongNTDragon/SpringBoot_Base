@@ -22,5 +22,7 @@ public class Constants {
         public static final String INVALID_JWT = "INVALID_JWT";
         public static final String ID_NOT_FOUND = "ID_NOT_FOUND";
         public static final String EMAIL_NOT_FOUND = "EMAIL_NOT_FOUND";
+        public static final String REFRESH_TOKEN_NOT_FOUND = "REFRESH_TOKEN_NOT_FOUND";
+        public static final String REFRESH_TOKEN_EXPIRED = "REFRESH_TOKEN_EXPIRED";
     }
 }
