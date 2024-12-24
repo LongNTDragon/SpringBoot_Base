@@ -3,7 +3,6 @@ package com.v1.tour.role;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +18,7 @@ import com.v1.tour.enums.EnumRoleName;
 import com.v1.tour.role.dto.RoleDto;
 import com.v1.tour.utils.Constants.UrlPath;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -27,27 +27,21 @@ import lombok.RequiredArgsConstructor;
 public class RoleController extends BaseController {
     private final RoleService service;
 
-    @GetMapping("{id}")
+    @GetMapping("")
     @RolesAllowed({ EnumRoleName.ADMIN })
-    public ResponseEntity<ResponseObject> findById(@PathVariable UUID id) {
-        return this.onSuccess(service.findById(id));
+    public ResponseEntity<ResponseObject> getAll() {
+        return this.onSuccess(service.findAll());
     }
 
     @PostMapping("")
     @RolesAllowed({ EnumRoleName.ADMIN })
-    public ResponseEntity<ResponseObject> create(@RequestBody RoleDto roleDto) {
+    public ResponseEntity<ResponseObject> create(@Valid @RequestBody RoleDto roleDto) {
         return this.onSuccess(service.create(roleDto));
     }
 
     @PatchMapping("{id}")
     @RolesAllowed({ EnumRoleName.ADMIN })
     public ResponseEntity<ResponseObject> update(@PathVariable UUID id, @RequestBody RoleDto roleDto) {
-        return this.onSuccess(service.updateById(id, roleDto));
-    }
-
-    @DeleteMapping("{id}")
-    @RolesAllowed({ EnumRoleName.ADMIN })
-    public ResponseEntity<ResponseObject> delete(@PathVariable UUID id) {
-        return this.onSuccess(service.deleteById(id));
+        return this.onSuccess(service.update(id, roleDto));
     }
 }

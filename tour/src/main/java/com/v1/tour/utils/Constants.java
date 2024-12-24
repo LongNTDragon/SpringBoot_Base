@@ -32,5 +32,6 @@ public class Constants {
         public static final String ID_NOT_FOUND = "ID_NOT_FOUND";
         public static final String EMAIL_NOT_FOUND = "EMAIL_NOT_FOUND";
         public static final String INVALID_EMAIL = "INVALID_EMAIL";
+        public static final String ROLE_NAME_EXISTS = "ROLE_NAME_EXISTS";
     }
 }

@@ -13,6 +13,8 @@ import com.v1.tour.enums.EnumRoleName;
 public interface RoleRepository extends BaseRepository<RoleModel> {
     Optional<RoleModel> findByName(EnumRoleName name);
 
+    List<RoleModel> findAll();
+
     @Query(value = "select r.* from role r inner join user_role ur on ur.role_id = r.id where ur.user_id = :userId", nativeQuery = true)
     List<RoleModel> findAllByUserId(@Param("userId") UUID userId);
 }
