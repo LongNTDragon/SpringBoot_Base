@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS user_token (
     is_refreshed BOOLEAN,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES account (id)
+    FOREIGN KEY (user_id) REFERENCES account (id) ON DELETE SET NULL
 );

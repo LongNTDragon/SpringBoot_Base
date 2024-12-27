@@ -4,24 +4,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.v1.tour.role.RoleService;
-import com.v1.tour.user.UserService;
+import com.v1.tour.base.Repositories;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private final UserService userService;
-    private final RoleService roleService;
+    private final Repositories repositories;
 
     @Override
     public UserDetailsImpl loadUserByUsername(String username) throws UsernameNotFoundException {
-        var user = userService.findByEmail(username);
+        var user = repositories.userRepository.findByEmail(username);
 
-        var roles = roleService.findAllByUserId(user.getId());
+        var roles = repositories.roleRepository.findAllByUserId(user.get().getId());
 
-        return UserDetailsImpl.build(user, roles);
+        return UserDetailsImpl.build(user.get(), roles);
     }
 
 }

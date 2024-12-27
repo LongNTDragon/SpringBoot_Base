@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.v1.tour.enums.EnumRoleName;
 import com.v1.tour.role.RoleModel;
 import com.v1.tour.user.UserModel;
 
@@ -41,5 +42,9 @@ public class UserDetailsImpl implements UserDetails {
                 .password(user.getPassword())
                 .authorities(authorities)
                 .build();
+    }
+
+    public List<EnumRoleName> getRoleNames() {
+        return this.getAuthorities().stream().map(authority -> EnumRoleName.valueOf(authority.toString())).toList();
     }
 }

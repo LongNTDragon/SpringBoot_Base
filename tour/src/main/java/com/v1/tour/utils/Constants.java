@@ -4,12 +4,15 @@ public class Constants {
     private Constants() {
     }
 
+    public static final Integer PAGE_SIZE = 1;
+
     public static class UrlPath {
         private UrlPath() {
         }
 
         public static final String AUTH = "auth";
         public static final String ROLE = "role";
+        public static final String USER = "user";
     }
 
     public static class ErrorType {
@@ -31,7 +34,16 @@ public class Constants {
 
         public static final String ID_NOT_FOUND = "ID_NOT_FOUND";
         public static final String EMAIL_NOT_FOUND = "EMAIL_NOT_FOUND";
+        public static final String EMAIL_EXIST = "EMAIL_EXISTS";
         public static final String INVALID_EMAIL = "INVALID_EMAIL";
-        public static final String ROLE_NAME_EXISTS = "ROLE_NAME_EXISTS";
+        public static final String ROLE_NAME_EXIST = "ROLE_NAME_EXISTS";
+    }
+
+    public static class ParamDefault {
+
+        private ParamDefault() {
+        }
+
+        public static final String PAGE = "0";
     }
 }

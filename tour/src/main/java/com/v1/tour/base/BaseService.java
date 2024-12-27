@@ -4,23 +4,33 @@ import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.v1.tour.exception.CustomException;
 import com.v1.tour.utils.Constants.ErrorType;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 public class BaseService<M extends BaseModel, R extends BaseRepository<M>> {
     protected ModelMapper mapper;
+    protected PasswordEncoder passwordEncoder;
     protected R repository;
     protected Repositories repositories;
+
+    @PersistenceContext
+    protected EntityManager entityManager;
 
     public BaseService(R repository) {
         this.repository = repository;
     }
 
     @Autowired
-    public void injectDependencies(ModelMapper mapper, Repositories repositories) {
+    public void injectDependencies(ModelMapper mapper, Repositories repositories,
+            PasswordEncoder passwordEncoder) {
         this.mapper = mapper;
         this.repositories = repositories;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public M findById(UUID id) {

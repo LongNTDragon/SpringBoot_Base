@@ -36,10 +36,10 @@ public class RoleService extends BaseService<RoleModel, RoleRepository> {
     private void validateRoleName(RoleDto roleDto, UUID id) {
         var role = super.repository.findByName(roleDto.getName());
         if (role.isPresent() && id == null)
-            throw new CustomException(ErrorType.ROLE_NAME_EXISTS);
+            throw new CustomException(ErrorType.ROLE_NAME_EXIST);
 
         if (role.isPresent() && !role.get().getId().equals(id))
-            throw new CustomException(ErrorType.ROLE_NAME_EXISTS);
+            throw new CustomException(ErrorType.ROLE_NAME_EXIST);
     }
 
     public RoleModel findOrCreateNewByName(EnumRoleName name) {

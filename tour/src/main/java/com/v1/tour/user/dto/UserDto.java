@@ -1,7 +1,14 @@
 package com.v1.tour.user.dto;
 
-import com.v1.tour.base.BaseDto;
+import java.util.List;
+import java.util.UUID;
 
+import com.v1.tour.base.BaseDto;
+import com.v1.tour.utils.Constants.ErrorType;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,8 +21,16 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserDto extends BaseDto {
-    private String username;
+    @NotNull(message = ErrorType.FIELD_NULL)
+    @NotBlank(message = ErrorType.FIELD_BLANK)
+    @Email(message = ErrorType.INVALID_EMAIL)
     private String email;
-    private String phone;
+    @NotNull(message = ErrorType.FIELD_NULL)
+    @NotBlank(message = ErrorType.FIELD_BLANK)
     private String password;
+    @NotNull(message = ErrorType.FIELD_NULL)
+    private List<UUID> roleIds;
+
+    private String username;
+    private String phone;
 }
