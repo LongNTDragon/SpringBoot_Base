@@ -3,6 +3,8 @@ package com.v1.tour.user;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,7 @@ import com.v1.tour.utils.Constants.ErrorType;
 @Service
 public class UserService extends BaseService<UserModel, UserRepository> {
     UserRoleService userRoleService;
+    Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public UserService(Repositories repositories, UserRoleService userRoleService) {
         super(repositories.userRepository);
@@ -36,6 +39,7 @@ public class UserService extends BaseService<UserModel, UserRepository> {
                 UserDao.class);
         query.setFirstResult(page * Constants.PAGE_SIZE);
         query.setMaxResults(Constants.PAGE_SIZE);
+
         return query.getResultList();
     }
 

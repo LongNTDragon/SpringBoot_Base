@@ -1,0 +1,17 @@
+services:
+  tour-service:
+    build: 
+      context: ./tour
+    container_name: tour-service
+    image: tour-service
+    ports:
+      - "${TOUR_SERVICE_PORT}:2002" 
+    env_file:
+      - .env
+    networks:
+      - general-network
+
+networks:
+  general-network:
+    name: general-network
+    driver: bridge
