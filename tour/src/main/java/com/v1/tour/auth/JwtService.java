@@ -24,7 +24,9 @@ public class JwtService {
     public String generateJwtToken(UserDetailsImpl userDetailsImpl) {
         return Jwts.builder()
                 .setSubject(userDetailsImpl.getEmail())
+                .claim("id", userDetailsImpl.getId())
                 .claim("username", userDetailsImpl.getUsername())
+                .claim("roles", userDetailsImpl.getRoleNames())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + this.tokenExpiration))
                 .signWith(this.getSigningKey(), SignatureAlgorithm.HS256)

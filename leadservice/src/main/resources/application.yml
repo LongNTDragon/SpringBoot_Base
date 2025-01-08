@@ -16,3 +16,8 @@ spring:
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
+  jwt:
+    secret: ZHJhZ29uIGlzIHZlcnkgaGFuZHNvbWUgYW5kIGZyaWVuZGx5
+    expiration-time: 
+      access-token: 18000000
+      refresh-token: 864000000
