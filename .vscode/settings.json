@@ -7,6 +7,7 @@
         "jjwt",
         "jsonwebtoken",
         "Jwts",
+        "leadservice",
         "modelmapper",
         "projectlombok",
         "rolesallow",

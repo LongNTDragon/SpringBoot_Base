@@ -1,0 +1,15 @@
+server:
+  port: 2003
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: leadservice
+  data:
+    mongodb:
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27018}
+      database: ${MONGO_DB:leadservice}
+      username: ${MONGO_INITDB_ROOT_USERNAME:mongo}
+      password: ${MONGO_INITDB_ROOT_PASSWORD:my_password}
