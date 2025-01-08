@@ -13,3 +13,6 @@ spring:
       database: ${MONGO_DB:leadservice}
       username: ${MONGO_INITDB_ROOT_USERNAME:mongo}
       password: ${MONGO_INITDB_ROOT_PASSWORD:my_password}
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
