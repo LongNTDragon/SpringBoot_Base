@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.v1.leadservice.base.BaseController;
 import com.v1.leadservice.base.ResponseObject;
+import com.v1.leadservice.classes.User;
 import com.v1.leadservice.lead.dto.LeadDto;
 import com.v1.leadservice.utils.Constants.UrlPath;
 
@@ -31,6 +32,14 @@ public class LeadController extends BaseController {
 
     @PostMapping("")
     public ResponseEntity<ResponseObject> create(@Valid @RequestBody LeadDto leadDto) {
+        var user = super.getUserDetailsImpl();
+
+        leadDto.setUserCreate(User.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .build());
+
         return super.onSuccess(service.create(leadDto));
     }
 

@@ -4,6 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.v1.leadservice.base.BaseDto;
 import com.v1.leadservice.base.BaseModel;
+import com.v1.leadservice.classes.User;
 import com.v1.leadservice.lead.dto.LeadDto;
 
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class LeadModel extends BaseModel {
     private String email;
     private String phone;
     private String requirement;
+    private User userCreate;
 
     @Override
     public void updateByDto(BaseDto baseDto) {
