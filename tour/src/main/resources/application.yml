@@ -24,3 +24,13 @@ spring:
     expiration-time: 
       access-token: 18000000
       refresh-token: 864000000
+  kafka: 
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    topics:
+      user-update:
+        name: ${USER-UPDATE:USER-UPDATE-DEV}
+
+

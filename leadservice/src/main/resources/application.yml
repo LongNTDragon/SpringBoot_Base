@@ -21,3 +21,15 @@ spring:
     expiration-time: 
       access-token: 18000000
       refresh-token: 864000000
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: lead-group
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "eventdto"
+    topics:
+      user-update:
+        name: ${USER-UPDATE:USER-UPDATE-DEV}

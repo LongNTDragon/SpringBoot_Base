@@ -3,14 +3,13 @@ package com.v1.tour.user;
 import java.util.List;
 import java.util.UUID;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.v1.tour.base.BaseService;
 import com.v1.tour.base.Repositories;
 import com.v1.tour.exception.CustomException;
+import com.v1.tour.kafka.PublicMessageKafka;
 import com.v1.tour.user.dao.UserDao;
 import com.v1.tour.user.dto.UserDto;
 import com.v1.tour.user.dto.UserInfoUpdateDto;
@@ -19,14 +18,19 @@ import com.v1.tour.userrole.dto.UserRoleDto;
 import com.v1.tour.utils.Constants;
 import com.v1.tour.utils.Constants.ErrorType;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class UserService extends BaseService<UserModel, UserRepository> {
     UserRoleService userRoleService;
-    Logger logger = LoggerFactory.getLogger(UserService.class);
+    PublicMessageKafka publicMessageKafka;
 
-    public UserService(Repositories repositories, UserRoleService userRoleService) {
+    public UserService(Repositories repositories, UserRoleService userRoleService,
+            PublicMessageKafka publicMessageKafka) {
         super(repositories.userRepository);
         this.userRoleService = userRoleService;
+        this.publicMessageKafka = publicMessageKafka;
     }
 
     @SuppressWarnings("unchecked")
@@ -81,6 +85,8 @@ public class UserService extends BaseService<UserModel, UserRepository> {
                     .map(roleId -> UserRoleDto.builder().userId(id).roleId(roleId).build()).toList();
             this.userRoleService.createMulti(userRoleDtos);
         }
+
+        publicMessageKafka.publicUpdateUser(user);
         return user;
     }
 

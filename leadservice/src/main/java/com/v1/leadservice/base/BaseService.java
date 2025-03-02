@@ -2,6 +2,7 @@ package com.v1.leadservice.base;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.v1.leadservice.exception.CustomException;
 import com.v1.leadservice.utils.Constants.ErrorType;
@@ -10,15 +11,17 @@ public class BaseService<M extends BaseModel, R extends BaseRepository<M>> {
     protected Repositories repositories;
     protected R repository;
     protected ModelMapper mapper;
+    protected MongoTemplate mongoTemplate;
 
     public BaseService(R repository) {
         this.repository = repository;
     }
 
     @Autowired
-    public void injectDependencies(Repositories repositories, ModelMapper mapper) {
+    public void injectDependencies(Repositories repositories, ModelMapper mapper, MongoTemplate mongoTemplate) {
         this.repositories = repositories;
         this.mapper = mapper;
+        this.mongoTemplate = mongoTemplate;
     }
 
     public M findById(String id) {
