@@ -7,7 +7,7 @@ spring:
   application:
     name: tour
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:dev_database}
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:5432/${POSTGRES_DB:dev_database}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:my_password}
     driver-class-name: org.postgresql.Driver

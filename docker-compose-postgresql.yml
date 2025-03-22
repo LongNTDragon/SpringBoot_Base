@@ -3,21 +3,19 @@ services:
     image: postgres:16.3-alpine3.20
     container_name: postgresql
     ports:
-      - "${POSTGRES_PORT}:5432"                       
+      - "5432:5432"                       
     env_file: 
       - .env
     networks:
       - general-network
     volumes:
       - postgres-data:/var/lib/postgresql/data
-    restart: always
+    # restart: always
 
 networks:
   general-network:
     name: general-network
-    driver: bridge
 
 volumes:
   postgres-data:
     name: postgres-data
-    driver: local

@@ -3,21 +3,19 @@ services:
     image: mongo:7.0.15
     container_name: mongodb
     ports:
-      - "${MONGO_PORT}:27017"
+      - "27018:27017"
     env_file:
       - .env
     networks:
       - general-network
     volumes:
       - mongo-data:/data/db
-    restart: always
+    # restart: always
 
 networks:
   general-network:
     name: general-network
-    driver: bridge
 
 volumes:
   mongo-data:
     name: mongo-data
-    driver: local
