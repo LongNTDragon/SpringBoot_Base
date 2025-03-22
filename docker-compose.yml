@@ -5,7 +5,18 @@ services:
     container_name: tour-service
     image: tour-service
     ports:
-      - "${TOUR_SERVICE_PORT}:2002" 
+      - "2002:2002" 
+    env_file:
+      - .env
+    networks:
+      - general-network
+  lead-service:
+    build: 
+      context: ./leadservice
+    container_name: lead-service
+    image: lead-service
+    ports:
+      - "2003:2003" 
     env_file:
       - .env
     networks:
@@ -14,4 +25,3 @@ services:
 networks:
   general-network:
     name: general-network
-    driver: bridge
